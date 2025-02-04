@@ -18,3 +18,24 @@ services:
       - ./backend/.env
     depends_on:
       - db
+
+  pinger:
+    build:
+      context: ./pinger
+      dockerfile: Dockerfile
+    container_name: pinger_app
+    environment:
+      BACKEND_URL: http://backend:8080
+      PING_INTERVAL_SECONDS: 10
+    depends_on:
+      - backend
+
+  test1:
+    image: alpine:3.17
+    container_name: test1
+    command: [ "sh", "-c", "while true; do sleep 3600; done" ]
+
+  test2:
+      image: alpine:3.17
+      container_name: test2
+      command: [ "sh", "-c", "while true; do sleep 3600; done" ]

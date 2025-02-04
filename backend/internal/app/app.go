@@ -14,7 +14,7 @@ import (
 Start function starts application
 -gets env variables
 -connects to DB
--starts web-server
+-starts backend-service
 */
 func Start() {
 	err := godotenv.Load()
