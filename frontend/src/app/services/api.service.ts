@@ -30,4 +30,9 @@ export class ApiService {
   updateContainer(id: number, payload: Partial<Container>): Observable<Container> {
     return this.http.put<Container>(`${this.apiUrl}/containers/${id}`, payload);
   }
+
+  //deleteContainer - deletes container by ID
+  deleteContainer(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/containers/${id}`);
+  }
 }

@@ -18,6 +18,7 @@
     <th>IP Address</th>
     <th>Last Ping</th>
     <th>Last Success</th>
+    <th>Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -26,6 +27,11 @@
     <td>{{ c.ip_address }}</td>
     <td>{{ c.last_ping_time }}</td>
     <td>{{ c.last_success_time }}</td>
+    <td>
+      <button class="btn btn-sm btn-danger" (click)="deleteContainer(c.id)">
+        <i class="bi bi-trash"></i>
+      </button>
+    </td>
   </tr>
   </tbody>
 </table>
