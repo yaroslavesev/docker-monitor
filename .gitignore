@@ -1,1 +1,4 @@
 /backend/.idea
+/frontend/.vscode
+/frontend/src/app/app.component.css
+/frontend/src/app/pages/containers/containers.component.css

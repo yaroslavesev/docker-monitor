@@ -1,0 +1,31 @@
+<!--skelet of container component-->
+<div class="mb-3">
+  <label for="ipInput" class="form-label">Add new IP</label>
+  <input
+    type="text"
+    class="form-control"
+    id="ipInput"
+    [(ngModel)]="newIp"
+    placeholder="Enter IP address"
+  />
+  <button class="btn btn-primary mt-2" (click)="createContainer()">Add</button>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>IP Address</th>
+    <th>Last Ping</th>
+    <th>Last Success</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let c of containers">
+    <td>{{ c.id }}</td>
+    <td>{{ c.ip_address }}</td>
+    <td>{{ c.last_ping_time }}</td>
+    <td>{{ c.last_success_time }}</td>
+  </tr>
+  </tbody>
+</table>

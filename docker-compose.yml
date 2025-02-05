@@ -39,3 +39,14 @@ services:
       image: alpine:3.17
       container_name: test2
       command: [ "sh", "-c", "while true; do sleep 3600; done" ]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    environment:
+      BACKEND_URL: http://backend:8080
+    depends_on:
+      - backend
