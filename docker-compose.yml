@@ -12,8 +12,6 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
     env_file:
       - ./backend/.env
     depends_on:
@@ -30,6 +28,8 @@ services:
     depends_on:
       - backend
 
+#Test docker-containers
+
   test1:
     image: alpine:3.17
     container_name: test1
@@ -44,9 +44,74 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - "4200:4200"
     environment:
       BACKEND_URL: http://backend:8080
     depends_on:
       - backend
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx_proxy
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - "80:80"
+
+
+# WITHOUT NGINX - comment the code before this string and uncomment code after this string
+
+
+#services:
+#  db:
+#    image: postgres:14
+#    environment:
+#      POSTGRES_PASSWORD: postgres
+#      POSTGRES_USER: postgres
+#      POSTGRES_DB: postgres
+#    ports:
+#      - "5432:5432"
+#
+#  backend:
+#    build:
+#      context: ./backend
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080"
+#    env_file:
+#      - ./backend/.env
+#    depends_on:
+#      - db
+#
+#  pinger:
+#    build:
+#      context: ./pinger
+#      dockerfile: Dockerfile
+#    container_name: pinger_app
+#    environment:
+#      BACKEND_URL: http://backend:8080
+#      PING_INTERVAL_SECONDS: 10
+#    depends_on:
+#      - backend
+#
+#  test1:
+#    image: alpine:3.17
+#    container_name: test1
+#    command: [ "sh", "-c", "while true; do sleep 3600; done" ]
+#
+#  test2:
+#    image: alpine:3.17
+#    container_name: test2
+#    command: [ "sh", "-c", "while true; do sleep 3600; done" ]
+#
+#  frontend:
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    ports:
+#      - "4200:4200"
+#    environment:
+#      BACKEND_URL: http://backend:8080
+#    depends_on:
+#      - backend

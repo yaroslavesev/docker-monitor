@@ -12,5 +12,5 @@ import { ContainersComponent } from './pages/containers/containers.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Docker Pinger UI';
+  title = 'Docker Monitor UI';
 }
