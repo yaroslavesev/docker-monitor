@@ -2,18 +2,13 @@ package config
 
 import (
 	"os"
+	"pinger/internal/models"
 	"strconv"
 	"time"
 )
 
-// Config model
-type Config struct {
-	BackendURL   string
-	PingInterval time.Duration
-}
-
 // LoadConfig gets environmental variables
-func LoadConfig() *Config {
+func LoadConfig() *models.Config {
 	backendURL := os.Getenv("BACKEND_URL")
 	if backendURL == "" {
 		backendURL = "http://backend:8080"
@@ -28,7 +23,7 @@ func LoadConfig() *Config {
 		intervalSec = 10
 	}
 
-	return &Config{
+	return &models.Config{
 		BackendURL:   backendURL,
 		PingInterval: time.Duration(intervalSec) * time.Second,
 	}
