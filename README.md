@@ -137,8 +137,12 @@ pinger/
 │   │   └── config.go      // env loading: BACKEND_URL, PING_INTERVAL_SECONDS, etc.
 │   ├── models/
 │   │   └── container.go   // mirror the Container struct from the backend
-│   └── service/
-│       └── pinger.go      //main logic to ping IPs, call backend
+│   │   └── config.go      // Config struct
+│   └── service/ //main logic to ping IPs, call backend
+│       └── containersAPI.go
+│       └── pingerLoop.go
+│       └── pingExecutor.go
+│       └── pingProcess.go  
 └── .env                    // optional environment variables
 ```
 
